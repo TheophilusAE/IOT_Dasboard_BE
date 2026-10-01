@@ -1,0 +1,28 @@
+package models
+
+import "time"
+
+type Device struct {
+	ID              int64
+	DeviceUID       string
+	DisplayName     string
+	Location        *string
+	FirmwareVersion *string
+	RegisteredAt    time.Time
+	IsActive        bool
+}
+
+type ConnectionStatus string
+
+const (
+	StatusOnline         ConnectionStatus = "online"
+	StatusOffline        ConnectionStatus = "offline"
+	StatusNeverConnected ConnectionStatus = "never_connected"
+)
+
+type DeviceStatus struct {
+	Device                    Device
+	ConnectionStatus          ConnectionStatus
+	LastHeartbeatAt           *time.Time
+	SecondsSinceLastHeartbeat *int64
+}
